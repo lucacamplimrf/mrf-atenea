@@ -1,0 +1,28 @@
+{
+  "name": "mrf-atenea",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "bin": {
+    "mrf-atenea": "./index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "marfeel",
+    "atenea",
+    "confluence"
+  ],
+  "author": "Luca Campli",
+  "license": "ISC",
+  "dependencies": {
+    "asyncawait": "^1.0.6",
+    "bluebird": "^3.4.6",
+    "co": "^4.6.0",
+    "co-prompt": "^1.0.0",
+    "commander": "^2.9.0",
+    "request": "^2.79.0",
+    "request-promise": "^4.1.1"
+  }
+}
