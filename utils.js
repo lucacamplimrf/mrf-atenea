@@ -2,10 +2,10 @@ const BND_REGX = /__(.*?)__/g;
 const Utils = {
   getBindings: (template) => {
     let match;
-    const results = [];
+    const results = new Set();
     while ( (match = BND_REGX.exec(template)) !== null ) {
       const binding = match[1];
-      if (binding && !results.includes(binding)) results.push(binding);
+      binding && results.add(binding);
     }
     return results;
   },

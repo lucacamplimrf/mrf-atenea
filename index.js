@@ -25,8 +25,7 @@ co(function *() {
     const template = res.body.storage.value;
     const bndArr = utils.getBindings(template);
     const bindings = {};
-    for (let i = 0; i < bndArr.length; i++) {
-      const binding = bndArr[i];
+    for (let binding of bndArr) {
       const val = yield prompt(`Insert ${binding} value: `);
       bindings[binding] = val;
     }
