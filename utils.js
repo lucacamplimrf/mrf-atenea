@@ -11,8 +11,20 @@ const Utils = {
     return results;
   },
 
-  buildContent: (bindings, template) => template.replace(/__.*?__/g, (token) => bindings[token.slice(2, -2)]),
-  
+  buildContent: (template, bindings) => template.replace(/__.*?__/g, (token) => bindings[token.slice(2, -2)]),
+
+  insertRefForImage: (template , title) => {
+    const imageMatch = template.match(/<ri:attachment.*?>/g);
+    if (imageMatch && imageMatch[0]) {
+      const insertIndex = template.indexOf(imageMatch[0]) + imageMatch[0].length - 2;
+      const ref = `><ri:page ri:content-title="${title}"/></ri:attachment>`;
+      return template.slice(0, insertIndex) + ref + template.slice(insertIndex + 2);
+    }
+    return template;
+  },
+
+  prettyLogJSON: obj => console.log(JSON.stringify(obj, null, 4))
+
 };
 
 module.exports = Utils;

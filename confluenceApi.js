@@ -2,8 +2,7 @@ const rq = require('request-promise');
 
 class confluenceApi {
   constructor(username, password) {
-    this.username = username;
-    this.password = password;
+    this.auth = {username, password};
   }
 
   getTemplate(pageId){
@@ -12,23 +11,24 @@ class confluenceApi {
         qs: {
             expand: 'body.storage'
         },
-        auth: {
-            user: this.username,
-            pass: this.password
-        },
+        auth: this.auth,
         json: true
-    });
+      })
+      .then((page) => {
+        return {
+          body: page.body.storage.value,
+          title: page.title
+        }
+      })
   }
 
   getChilds(pageId) {
     return rq({
         uri: `https://atenea.marfeel.com/rest/api/content/${pageId}/child/page`,
-        auth: {
-            user: this.username,
-            pass: this.password
-        },
+        auth: this.auth,
         json: true
-    });
+      }).
+      then(childs => childs.results.map(child => child.id));
   }
 
   createNewPage(title, spaceKey, value, parentId) {
@@ -52,10 +52,7 @@ class confluenceApi {
                 }
             }
         },
-        auth: {
-            user: this.username,
-            pass: this.password
-        },
+        auth: this.auth,
         json: true
     });
   }
