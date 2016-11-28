@@ -1,0 +1,22 @@
+{
+    "name": "Test Template",
+    "bindings": {
+      "name":"Luca",
+      "job":"developer",
+      "birthplace":"Vasto"
+    },
+    "title": "Test parent",
+    "childs": [{
+        "name": "Child Template",
+        "title": "Test child",
+        "bindings": {
+
+        }
+    }, {
+        "name": "Child Template 2",
+        "title": "Test child 2",
+        "bindings": {
+          "foo": "bar"
+        }
+    }]
+}
